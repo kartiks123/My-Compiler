@@ -14,7 +14,8 @@ public class Compiler
 {
     public static TreeMap<String, ArrayList<Character>> code = new TreeMap<>();
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException 
+    {
 
         FileOutputStream f = new FileOutputStream("CreatedOutput.txt");
 
@@ -41,11 +42,8 @@ public class Compiler
 
     }
 
-    public static void binaryGenerator(String input){
-//        Path path = Paths.get(input);
-//        byte[] bytes = input.getBytes(StandardCharsets.UTF_8);
-//        System.out.println(Arrays.toString(bytes));
-
+    public static void binaryGenerator(String input)
+    {
         String s = "";
         char[] ch = input.toCharArray();
 
@@ -55,105 +53,116 @@ public class Compiler
 
         System.out.println(s);
 
-        try {
+        try 
+        {
             File myObj = new File("Binary.bin");
-//            if (myObj.createNewFile()) {
-//                System.out.println("File created: " + myObj.getName());
-//            } else {
-//                System.out.println("File already exists.");
-//            }
-
             Path path = Path.of("Binary.bin");
-
             Files.writeString(path, s);
-//            for(char c : s.toCharArray()){
-//                myWriter.write(c);
-//            }
             System.out.println("Binary File Generated.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
+        } 
+
+        catch (IOException e) 
+        {
+            System.out.println("Error Occurred !");
             e.printStackTrace();
         }
-
     }
 
-    public static void parser(String input){
+    public static void parser(String input)
+    {
         try{
-
             char[] inputChar = input.toCharArray();
 
             Stack<String> stacks = new Stack<>();
 
-            Character[] operators = new Character[]{'+', '-', '*', '/'};
-            Character[] numbers = new Character[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+            Character[] operators = new Character[]{'+', '-', '*', '/'}; // Basic Operations only
+            Character[] numbers = new Character[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}; // Digits from 0-9
 
             ArrayList<Character> store = new ArrayList<>();
             int storeCursor = 0;
 
             int checker = 0;
-            for(int i = 0; i < input.length(); i++){
-
-                if((Arrays.stream(operators).toList()).contains(inputChar[i])){
+            for(int i = 0; i < input.length(); i++)
+            {
+                if((Arrays.stream(operators).toList()).contains(inputChar[i]))
+                {
                     store.add(inputChar[i]);
                     storeCursor++;
                 }
 
-                else if(inputChar[i] == '('){
+                else if(inputChar[i] == '(')
+                {
                     stacks.push(Character.toString(inputChar[i]));
-                    if (i == 0) {
-                    }
-                    else if ((Arrays.stream(operators).toList()).contains(inputChar[i-1])) {
-                        checker++;
+
+                    if (i == 0) 
+                    {
+
                     }
 
+                    else if ((Arrays.stream(operators).toList()).contains(inputChar[i-1])) 
+                    {
+                        checker++;
+                    }
                 }
 
-                else if(inputChar[i] == ')'){
+                else if(inputChar[i] == ')')
+                {
                     stacks.push(Character.toString(inputChar[i]));
-                    if(i == inputChar.length - 1){
+                    if(i == inputChar.length - 1)
+                    {
+
                     }
-                    else if ((Arrays.stream(operators).toList()).contains(inputChar[i+1]) ){
+
+                    else if ((Arrays.stream(operators).toList()).contains(inputChar[i+1]))
+                    {
                         checker++;
                     }
 
-                    if(checker != 0 && checker % 2 == 0 && !store.isEmpty() ){
+                    if(checker != 0 && checker % 2 == 0 && !store.isEmpty())
+                    {
                         stacks.push(Character.toString(store.get(storeCursor-1)));
                         store.remove(storeCursor-1);
                         storeCursor--;
                         checker--;
                     }
                 }
-                else{
-                    if(i == inputChar.length - 1){
+
+                else
+                {
+                    if(i == inputChar.length - 1)
+                    {
                         stacks.push(Character.toString(inputChar[i]));
                     }
-                    else if((Arrays.stream(numbers).toList()).contains(inputChar[i+1])){
-                        while((Arrays.stream(numbers).toList()).contains(inputChar[i+1])) {
-    //                        System.out.println("inputchar[i] = " + (10 * inputChar[i]));
-    //                        System.out.println("inputchar[i+1] = " + (inputChar[i+1]));
+
+                    else if((Arrays.stream(numbers).toList()).contains(inputChar[i+1]))
+                    {
+                        while((Arrays.stream(numbers).toList()).contains(inputChar[i+1])) 
+                        {
                             String insert = inputChar[i] + Character.toString(inputChar[i+1]);
-    //                        System.out.println(insert);
                             stacks.push(insert);
                             i++;
                         }
                         checker++;
                     }
-                    else {
+
+                    else 
+                    {
                         stacks.push(Character.toString(inputChar[i]));
                         checker++;
                     }
 
-
-                    if(checker != 0 && checker % 2 == 0){
+                    if(checker != 0 && checker % 2 == 0)
+                    {
                         stacks.push(Character.toString(store.get(storeCursor-1)));
                         store.remove(storeCursor-1);
                         storeCursor--;
                         checker--;
                     }
                 }
-
             }
-            if(!store.isEmpty()){
+
+            if(!store.isEmpty())
+            {
                 stacks.push(Character.toString(store.get(storeCursor-1)));
             }
 
