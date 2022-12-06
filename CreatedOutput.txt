@@ -1,0 +1,23 @@
+Tokenization is taking place as follows:
+{number=[5, 5], operator=[+]}
+
+Parsing is taking place as follows:
+
+Abstract Syntax Tree for '5+5': 
+{
+	type: 'Program',
+	body: [{
+
+		type: 'number'
+		Value: '5'
+		type: 'number'
+		Value: '5'
+		type: 'operator'
+		Operation: 'add'
+	}]
+}
+
+
+Binary:
+  110101  101011  110101
+Binary File Generated.

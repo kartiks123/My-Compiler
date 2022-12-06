@@ -10,14 +10,13 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.*;
 
-public class Compiler {
-
+public class Compiler 
+{
     public static TreeMap<String, ArrayList<Character>> code = new TreeMap<>();
-
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        FileOutputStream f = new FileOutputStream("Output.txt");
+        FileOutputStream f = new FileOutputStream("CreatedOutput.txt");
 
         System.setOut(new PrintStream(f));
 //        JFrame frame = new JFrame("My First GUI");
@@ -26,28 +25,19 @@ public class Compiler {
 //        JButton compileButton = new JButton("Compile");
 //        frame.getContentPane().add(compileButton);
 //        frame.setVisible(true);
-        String input = JOptionPane.showInputDialog(null, "Enter your code:", "(7+8)*9");
+        String input = JOptionPane.showInputDialog(null, "Enter the Operation:","5+5 (for eg)");
 
-
-        System.out.println("Tokenization:\n============\n");
+        System.out.println("Tokenization is taking place as follows:");
         tokenizer(input);
-//        tokenizer("(7+8)");
-//	    tokenizer("(7+8)*9");
-//        tokenizer("10/(7+8)*9");
-        System.out.println("==========================================================\n\n\n");
 
-        System.out.println("Parsing:\n=======\n");
+        System.out.println("\nParsing is taking place as follows:");
         parser(input);
-//        parser("(7+8)");
-//        parser("+78"); // Gives ERROR
-//        parser("(7+8)*9");
-//        parser("10/(7+8)*9");
 
         System.out.println("\n\nBinary:");
         binaryGenerator(input);
 
-        JOptionPane.showMessageDialog( null, "Output.txt and Binary.bin File Generated.",
-                "Basic Compiler", JOptionPane.PLAIN_MESSAGE );
+        JOptionPane.showMessageDialog( null, "Kindly Check the Output and Binary file generated",
+                "My Compiler", JOptionPane.PLAIN_MESSAGE );
 
     }
 
