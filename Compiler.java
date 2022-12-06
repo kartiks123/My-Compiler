@@ -166,7 +166,6 @@ public class Compiler
                 stacks.push(Character.toString(store.get(storeCursor-1)));
             }
 
-
             System.out.println("\nAbstract Syntax Tree for '" + input + "': ");
             System.out.println("{\n" +
                     "\ttype: 'Program',\n" +
@@ -185,34 +184,33 @@ public class Compiler
                 else if(checkParam(s.charAt(0)).equals("operator")){
                     System.out.print(tab + "type: '" + checkParam(s.charAt(0)) + "'" + "\n" + tab);
                     switch (s) {
-                        case "+" -> s = "add";
-                        case "-" -> s = "subtract";
-                        case "*" -> s = "multiply";
-                        case "/" -> s = "divide";
+                        case "+" -> s = "Addition";
+                        case "-" -> s = "Subtraction";
+                        case "*" -> s = "Multiplication";
+                        case "/" -> s = "Division";
                     }
                     System.out.println("Operation: '" + s + "'");
                 }
+
                 else if(checkParam(s.charAt(0)).equals("paren") && s.charAt(0) == '('){
                     System.out.println(tab + "{\n");
                     tab = tab + "\t";
                 }
+
                 else if(checkParam(s.charAt(0)).equals("paren") && s.charAt(0) == ')'){
                     tab = tab.substring(1);
                     System.out.println(tab + "}\n");
                 }
-
             }
             tab = tab.substring(1);
             System.out.println(tab + "}]\n}");
-
         }
-        catch (Exception e){
-            System.out.println("\n ------------------ ");
-            System.out.println("| ERROR DETECTED!! |");
-            System.out.println(" ------------------ \n");
+
+        catch (Exception e)
+        {
+            System.out.println("\n ERROR DETECTED! \n");
         }
     }
-
 
     public static String checkParam(Character value){
         Character[] numbers = new Character[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
