@@ -5,7 +5,7 @@ package com.Compiler;
 // application code.
 
 import javax.swing.*;
-import java.io.*;
+import java.io.*; // For creating a GUI, which will ask for input
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.*;
