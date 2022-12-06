@@ -1,11 +1,13 @@
 package com.Compiler;
 
+// The javax. tools package provides interfaces and classes to work with the Java compiler and can be invoked from a 
+// program during execution. It provides a framework that allow clients to locate and run compilers from their own 
+// application code.
+
 import javax.swing.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.*;
 
 public class Compiler {
@@ -13,7 +15,7 @@ public class Compiler {
     public static TreeMap<String, ArrayList<Character>> code = new TreeMap<>();
 
 
-    public static void Compiler(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException {
 
         FileOutputStream f = new FileOutputStream("Output.txt");
 
